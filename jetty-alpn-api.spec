@@ -2,7 +2,7 @@
 
 Name:           jetty-alpn-api
 Version:        1.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Jetty ALPN API
 License:        ASL 2.0 and EPL
 URL:            http://www.eclipse.org/jetty
@@ -30,6 +30,10 @@ This package provides %{summary}.
 %prep
 %setup -q -n alpn-api-%{version}.%{addver}
 
+# Use packaging=bundle to get the manifest into jar
+%pom_remove_plugin :maven-jar-plugin
+%pom_xpath_inject pom:project '<packaging>bundle</packaging>'
+
 cp %{SOURCE1} %{SOURCE2} .
 
 %build
@@ -47,6 +51,9 @@ cp %{SOURCE1} %{SOURCE2} .
 
 
 %changelog
+* Tue Aug 04 2015 Michael Simacek <msimacek@redhat.com> - 1.1.0-3
+- Fix manifest inclusion
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
