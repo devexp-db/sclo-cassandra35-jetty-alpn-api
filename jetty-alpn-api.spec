@@ -2,7 +2,7 @@
 
 Name:           jetty-alpn-api
 Version:        1.1.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Jetty ALPN API
 License:        ASL 2.0 and EPL
 URL:            http://www.eclipse.org/jetty
@@ -51,6 +51,9 @@ cp %{SOURCE1} %{SOURCE2} .
 
 
 %changelog
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Tue Aug 04 2015 Michael Simacek <msimacek@redhat.com> - 1.1.0-3
 - Fix manifest inclusion
 
