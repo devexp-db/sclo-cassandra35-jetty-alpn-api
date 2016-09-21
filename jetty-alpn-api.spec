@@ -1,8 +1,8 @@
-%global addver v20141014
+%global addver v20150522
 
 Name:           jetty-alpn-api
-Version:        1.1.0
-Release:        4%{?dist}
+Version:        1.1.2
+Release:        1%{?dist}
 Summary:        Jetty ALPN API
 License:        ASL 2.0 and EPL
 URL:            http://www.eclipse.org/jetty
@@ -15,7 +15,9 @@ Source2:        http://www.apache.org/licenses/LICENSE-2.0.txt
 BuildRequires:  maven-local
 BuildRequires:  mvn(org.apache.felix:maven-bundle-plugin)
 BuildRequires:  mvn(org.apache.maven.plugins:maven-enforcer-plugin)
+BuildRequires:  mvn(org.codehaus.mojo:build-helper-maven-plugin)
 BuildRequires:  mvn(org.eclipse.jetty:jetty-parent:pom:)
+BuildRequires:  mvn(org.eclipse.jetty.toolchain:jetty-build-support)
 
 %description
 Jetty API for Application-Layer Protocol Negotiation.
@@ -51,6 +53,9 @@ cp %{SOURCE1} %{SOURCE2} .
 
 
 %changelog
+* Wed Sep 21 2016 Michael Simacek <msimacek@redhat.com> - 1.1.2-1
+- Update to upstream version 1.1.2.v20150522
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
