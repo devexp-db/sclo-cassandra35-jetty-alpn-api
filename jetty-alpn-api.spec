@@ -1,7 +1,7 @@
-%global addver v20150522
+%global addver v20160715
 
 Name:           jetty-alpn-api
-Version:        1.1.2
+Version:        1.1.3
 Release:        1%{?dist}
 Summary:        Jetty ALPN API
 License:        ASL 2.0 and EPL
@@ -53,6 +53,9 @@ cp %{SOURCE1} %{SOURCE2} .
 
 
 %changelog
+* Fri Oct 21 2016 Michael Simacek <msimacek@redhat.com> - 1.1.3-1
+- Update to upstream version 1.1.3
+
 * Wed Sep 21 2016 Michael Simacek <msimacek@redhat.com> - 1.1.2-1
 - Update to upstream version 1.1.2.v20150522
 
