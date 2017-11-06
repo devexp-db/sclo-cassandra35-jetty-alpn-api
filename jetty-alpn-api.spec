@@ -1,8 +1,11 @@
+%{?scl:%scl_package jetty-alpn-api}
+%{!?scl:%global pkg_name %{name}}
+
 %global addver v20160715
 
-Name:           jetty-alpn-api
+Name:           %{?scl_prefix}jetty-alpn-api
 Version:        1.1.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Jetty ALPN API
 License:        ASL 2.0 and EPL
 URL:            http://www.eclipse.org/jetty
@@ -12,12 +15,13 @@ Source0:        http://git.eclipse.org/c/jetty/org.eclipse.jetty.alpn.git/snapsh
 Source1:        http://www.eclipse.org/legal/epl-v10.html
 Source2:        http://www.apache.org/licenses/LICENSE-2.0.txt
 
-BuildRequires:  maven-local
-BuildRequires:  mvn(org.apache.felix:maven-bundle-plugin)
-BuildRequires:  mvn(org.apache.maven.plugins:maven-enforcer-plugin)
-BuildRequires:  mvn(org.codehaus.mojo:build-helper-maven-plugin)
-BuildRequires:  mvn(org.eclipse.jetty:jetty-parent:pom:)
-BuildRequires:  mvn(org.eclipse.jetty.toolchain:jetty-build-support)
+BuildRequires:  %{?scl_prefix_maven}maven-local
+BuildRequires:  %{?scl_prefix_maven}maven-plugin-bundle
+BuildRequires:  %{?scl_prefix_maven}mvn(org.apache.maven.plugins:maven-enforcer-plugin)
+BuildRequires:  %{?scl_prefix_maven}maven-plugin-build-helper
+BuildRequires:  %{?scl_prefix_maven}jetty-parent
+BuildRequires:  %{?scl_prefix_maven}jetty-build-support
+%{?scl:Requires: %scl_runtime}
 
 %description
 Jetty API for Application-Layer Protocol Negotiation.
@@ -32,17 +36,23 @@ This package provides %{summary}.
 %prep
 %setup -q -n alpn-api-%{version}.%{addver}
 
+%{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 # Use packaging=bundle to get the manifest into jar
 %pom_remove_plugin :maven-jar-plugin
 %pom_xpath_inject pom:project '<packaging>bundle</packaging>'
+%{?scl:EOF}
 
 cp %{SOURCE1} %{SOURCE2} .
 
 %build
+%{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 %mvn_build
+%{?scl:EOF}
 
 %install
+%{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 %mvn_install
+%{?scl:EOF}
 
 
 %files -f .mfiles
@@ -53,6 +63,9 @@ cp %{SOURCE1} %{SOURCE2} .
 
 
 %changelog
+* Mon Nov 06 2017 Augusto Mecking Caringi <acaringi@redhat.com> - 1.1.3-4
+- scl conversion
+
 * Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.3-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
