@@ -5,7 +5,7 @@
 
 Name:           %{?scl_prefix}jetty-alpn-api
 Version:        1.1.3
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Jetty ALPN API
 License:        ASL 2.0 and EPL
 URL:            http://www.eclipse.org/jetty
@@ -15,6 +15,8 @@ Source0:        http://git.eclipse.org/c/jetty/org.eclipse.jetty.alpn.git/snapsh
 Source1:        http://www.eclipse.org/legal/epl-v10.html
 Source2:        http://www.apache.org/licenses/LICENSE-2.0.txt
 
+BuildRequires:  java-1.8.0-openjdk-devel
+Requires:       java-1.8.0-openjdk-devel
 BuildRequires:  %{?scl_prefix_maven}maven-local
 BuildRequires:  %{?scl_prefix_maven}maven-plugin-bundle
 BuildRequires:  %{?scl_prefix_maven}mvn(org.apache.maven.plugins:maven-enforcer-plugin)
@@ -63,6 +65,9 @@ cp %{SOURCE1} %{SOURCE2} .
 
 
 %changelog
+* Wed Nov 08 2017 Augusto Mecking Caringi <acaringi@redhat.com> - 1.1.3-5
+- Add Require/BuildRequire for OpenJDK 1.8
+
 * Mon Nov 06 2017 Augusto Mecking Caringi <acaringi@redhat.com> - 1.1.3-4
 - scl conversion
 
